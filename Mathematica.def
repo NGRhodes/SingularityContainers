@@ -1,0 +1,13 @@
+Bootstrap: library
+From: ubuntu:18.04
+
+%files
+Mathematica_12.0.0_LINUX.sh
+
+%post
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get --no-install-recommends install -yq avahi-daemon libfontconfig1 libgl1-mesa-glx libasound2 xorg
+service avahi-daemon start
+bash Mathematica_12.0.0_LINUX.sh -- -auto -verbose
+rm Mathematica_12.0.0_LINUX.sh 
